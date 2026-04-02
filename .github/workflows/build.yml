@@ -9,10 +9,6 @@ on:
 jobs:
   build:
     runs-on: macos-15
-    strategy:
-      matrix:
-        destination:
-          - "platform=iOS Simulator,name=iPhone 16,OS=18.0"
 
     steps:
       - uses: actions/checkout@v4
@@ -21,12 +17,12 @@ jobs:
         run: |
           xcodebuild build \
             -scheme FellohPaymentSDK \
-            -destination '${{ matrix.destination }}' \
+            -destination 'generic/platform=iOS Simulator' \
             -skipPackagePluginValidation
 
       - name: Test
         run: |
           xcodebuild test \
             -scheme FellohPaymentSDK \
-            -destination '${{ matrix.destination }}' \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
             -skipPackagePluginValidation
