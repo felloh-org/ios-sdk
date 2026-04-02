@@ -1,0 +1,32 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-15
+    strategy:
+      matrix:
+        destination:
+          - "platform=iOS Simulator,name=iPhone 16,OS=18.0"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -scheme FellohPaymentSDK \
+            -destination '${{ matrix.destination }}' \
+            -skipPackagePluginValidation
+
+      - name: Test
+        run: |
+          xcodebuild test \
+            -scheme FellohPaymentSDK \
+            -destination '${{ matrix.destination }}' \
+            -skipPackagePluginValidation
