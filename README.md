@@ -1,5 +1,7 @@
 # Felloh iOS Payment SDK
 
+[![Build & Test](https://github.com/felloh-org/ios-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/felloh-org/ios-sdk/actions/workflows/build.yml)
+
 Embed Felloh payment forms in your iOS app. Supports card payments and open banking.
 
 ## Requirements
